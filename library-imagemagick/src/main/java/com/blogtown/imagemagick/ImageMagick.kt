@@ -40,7 +40,7 @@ class ImageMagick private constructor(private val context: Context) {
 
     fun getVersion(): String {
         return try {
-            executeCommand("--version").substringBefore("\n")
+            executeCommandWithOutput("--version").substringBefore("\n")
         } catch (e: Exception) {
             "Not loaded"
         }
