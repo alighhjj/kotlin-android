@@ -327,6 +327,18 @@ exceptions:
     ignoreLabeled: false
   SwallowedException:
     active: true
+    excludes:
+      [
+        "**/test/**",
+        "**/androidTest/**",
+        "**/commonTest/**",
+        "**/jvmTest/**",
+        "**/androidUnitTest/**",
+        "**/androidInstrumentedTest/**",
+        "**/jsTest/**",
+        "**/iosTest/**",
+        "**/ImageMagick.kt",
+      ]
     ignoredExceptionTypes:
       - "InterruptedException"
       - "MalformedURLException"
