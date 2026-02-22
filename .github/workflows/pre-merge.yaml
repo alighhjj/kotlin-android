@@ -31,6 +31,12 @@ jobs:
       - name: Run Gradle
         run: ./gradlew build --continue
 
+      - name: Upload Debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug-apk
+          path: app/build/outputs/apk/debug/*.apk
+
       - name: Upload Build Outputs
         uses: actions/upload-artifact@v4
         if: failure()
