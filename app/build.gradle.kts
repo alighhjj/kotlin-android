@@ -41,6 +41,7 @@ android {
         disable.add("GradleDependency")
         disable.add("SelectedPhotoAccess")
         disable.add("AndroidGradlePluginVersion")
+        disable.add("UnusedResources")
     }
 
     // Use this block to configure different flavors
