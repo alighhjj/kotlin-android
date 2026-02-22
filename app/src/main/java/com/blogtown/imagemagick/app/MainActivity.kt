@@ -141,7 +141,7 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         Result.failure(Exception("Processing failed"))
                     }
-                } catch (e: Exception) {
+                } catch (e: IOException) {
                     Result.failure(e)
                 }
             }
@@ -189,7 +189,7 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         Result.failure(Exception("Processing failed"))
                     }
-                } catch (e: Exception) {
+                } catch (e: IOException) {
                     Result.failure(e)
                 }
             }
@@ -218,7 +218,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Saved to ${destFile.absolutePath}", Toast.LENGTH_LONG).show()
             
             sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(destFile)))
-        } catch (e: Exception) {
+        } catch (e: IOException) {
             Toast.makeText(this, "Save failed: ${e.message}", Toast.LENGTH_SHORT).show()
         }
     }
@@ -233,7 +233,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             tempFile.absolutePath
-        } catch (e: Exception) {
+        } catch (e: IOException) {
             null
         }
     }
