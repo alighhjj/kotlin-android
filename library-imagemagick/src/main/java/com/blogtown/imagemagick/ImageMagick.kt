@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-import java.lang.InterruptedException
 
 class ImageMagick private constructor(private val context: Context) {
 
@@ -35,7 +34,7 @@ class ImageMagick private constructor(private val context: Context) {
         return try {
             getVersion()
             true
-        } catch (e: IOException) {
+        } catch (@Suppress("SwallowedException") e: IOException) {
             false
         }
     }
@@ -43,7 +42,7 @@ class ImageMagick private constructor(private val context: Context) {
     fun getVersion(): String {
         return try {
             executeCommandWithOutput("--version").substringBefore("\n")
-        } catch (e: IOException) {
+        } catch (@Suppress("SwallowedException") e: IOException) {
             "Not loaded"
         }
     }
@@ -268,7 +267,7 @@ class ImageMagick private constructor(private val context: Context) {
                     colorspace = parts[4]
                 )
             } else null
-        } catch (e: IllegalArgumentException) {
+        } catch (@Suppress("SwallowedException") e: IllegalArgumentException) {
             null
         }
     }
@@ -281,9 +280,9 @@ class ImageMagick private constructor(private val context: Context) {
             
             val exitCode = process.waitFor()
             exitCode
-        } catch (e: IOException) {
+        } catch (@Suppress("SwallowedException") e: IOException) {
             -1
-        } catch (e: InterruptedException) {
+        } catch (@Suppress("SwallowedException") e: InterruptedException) {
             -1
         }
     }
@@ -297,9 +296,9 @@ class ImageMagick private constructor(private val context: Context) {
             val output = process.inputStream.bufferedReader().readText()
             process.waitFor()
             output.trim()
-        } catch (e: IOException) {
+        } catch (@Suppress("SwallowedException") e: IOException) {
             ""
-        } catch (e: InterruptedException) {
+        } catch (@Suppress("SwallowedException") e: InterruptedException) {
             ""
         }
     }

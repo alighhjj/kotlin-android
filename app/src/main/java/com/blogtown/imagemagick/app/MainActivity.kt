@@ -20,6 +20,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
+import java.io.FileNotFoundException
+import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
 
@@ -122,7 +124,7 @@ class MainActivity : AppCompatActivity() {
                 try {
                     val inputPath = getPathFromUri(uri)
                     if (inputPath == null) {
-                        return@withContext Result.failure(Exception("Cannot access image"))
+                        return@withContext Result.failure(FileNotFoundException("Cannot access image"))
                     }
                     
                     val outputFile = File(cacheDir, "processed_${System.currentTimeMillis()}.jpg")
@@ -139,7 +141,7 @@ class MainActivity : AppCompatActivity() {
                     if (success) {
                         Result.success(outputFile)
                     } else {
-                        Result.failure(Exception("Processing failed"))
+                        Result.failure(IOException("Processing failed"))
                     }
                 } catch (e: IOException) {
                     Result.failure(e)
@@ -167,7 +169,7 @@ class MainActivity : AppCompatActivity() {
                 try {
                     val inputPath = getPathFromUri(uri)
                     if (inputPath == null) {
-                        return@withContext Result.failure(Exception("Cannot access image"))
+                        return@withContext Result.failure(FileNotFoundException("Cannot access image"))
                     }
                     
                     val outputFile = File(cacheDir, "${operation}_${System.currentTimeMillis()}.jpg")
@@ -187,7 +189,7 @@ class MainActivity : AppCompatActivity() {
                     if (success) {
                         Result.success(outputFile)
                     } else {
-                        Result.failure(Exception("Processing failed"))
+                        Result.failure(IOException("Processing failed"))
                     }
                 } catch (e: IOException) {
                     Result.failure(e)
