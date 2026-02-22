@@ -188,13 +188,28 @@ class MainActivity : AppCompatActivity() {
                     currentProcessedPath = outputFile.absolutePath
                     
                     val success = when (operation) {
-                        "blur" -> imageMagick.blurImage(inputPath, outputFile.absolutePath, BLUR_RADIUS, BLUR_SIGMA)
+                        "blur" -> imageMagick.blurImage(
+                            inputPath,
+                            outputFile.absolutePath,
+                            BLUR_RADIUS,
+                            BLUR_SIGMA
+                        )
                         "grayscale" -> imageMagick.grayscaleImage(inputPath, outputFile.absolutePath)
                         "sepia" -> imageMagick.applySepia(inputPath, outputFile.absolutePath)
                         "negate" -> imageMagick.negateImage(inputPath, outputFile.absolutePath)
                         "flip" -> imageMagick.flipImage(inputPath, outputFile.absolutePath)
-                        "rotate" -> imageMagick.rotateImage(inputPath, outputFile.absolutePath, ROTATE_DEGREES)
-                        "resize" -> imageMagick.resizeImage(inputPath, outputFile.absolutePath, SMALL_RESIZE_DIMENSION, SMALL_RESIZE_DIMENSION, SMALL_RESIZE_QUALITY)
+                        "rotate" -> imageMagick.rotateImage(
+                            inputPath,
+                            outputFile.absolutePath,
+                            ROTATE_DEGREES
+                        )
+                        "resize" -> imageMagick.resizeImage(
+                            inputPath,
+                            outputFile.absolutePath,
+                            SMALL_RESIZE_DIMENSION,
+                            SMALL_RESIZE_DIMENSION,
+                            SMALL_RESIZE_QUALITY
+                        )
                         else -> false
                     }
                     

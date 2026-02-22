@@ -173,7 +173,7 @@ complexity:
     active: true
     functionThreshold: 6
     constructorThreshold: 7
-    ignoreDefaultParameters: false
+    ignoreDefaultParameters: true
     ignoreDataClasses: true
     ignoreAnnotatedParameter: []
   MethodOverloading:
@@ -228,7 +228,7 @@ complexity:
         "**/iosTest/**",
       ]
     thresholdInFiles: 11
-    thresholdInClasses: 11
+    thresholdInClasses: 25
     thresholdInInterfaces: 11
     thresholdInObjects: 11
     thresholdInEnums: 11

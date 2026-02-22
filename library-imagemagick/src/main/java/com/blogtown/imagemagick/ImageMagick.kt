@@ -12,6 +12,10 @@ class ImageMagick private constructor(private val context: Context) {
     companion object {
         @Volatile
         private var instance: ImageMagick? = null
+        
+        private const val BRIGHTNESS_BASE = 100
+        private const val DEFAULT_DEPTH = 8
+        private const val MIN_IMAGE_INFO_PARTS = 5
 
         fun getInstance(): ImageMagick {
             return checkNotNull(instance) {
@@ -128,11 +132,11 @@ class ImageMagick private constructor(private val context: Context) {
         outputPath: String,
         brightness: Double
     ): Boolean {
-        val normalized = 100 + brightness
+        val normalized = BRIGHTNESS_BASE + brightness
         return executeCommand(
             "convert",
             inputPath,
-            "-modulate", "${normalized},100,100",
+            "-modulate", "${normalized},$BRIGHTNESS_BASE,$BRIGHTNESS_BASE",
             outputPath
         ) == 0
     }
@@ -254,12 +258,12 @@ class ImageMagick private constructor(private val context: Context) {
             )
             if (output.isBlank()) return null
             val parts = output.split(",")
-            if (parts.size >= 5) {
+            if (parts.size >= MIN_IMAGE_INFO_PARTS) {
                 ImageInfo(
                     width = parts[0].toIntOrNull() ?: 0,
                     height = parts[1].toIntOrNull() ?: 0,
                     format = parts[2],
-                    depth = parts[3].toIntOrNull() ?: 8,
+                    depth = parts[3].toIntOrNull() ?: DEFAULT_DEPTH,
                     colorspace = parts[4]
                 )
             } else null

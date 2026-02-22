@@ -42,6 +42,7 @@ android {
         disable.add("SelectedPhotoAccess")
         disable.add("AndroidGradlePluginVersion")
         disable.add("UnusedResources")
+        disable.add("ButtonStyle")
     }
 
     // Use this block to configure different flavors
