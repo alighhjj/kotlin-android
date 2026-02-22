@@ -136,7 +136,7 @@ class MainActivity : AppCompatActivity() {
                 try {
                     val inputPath = getPathFromUri(uri)
                     if (inputPath == null) {
-                        return@withContext Result.failure(FileNotFoundException("Cannot access image"))
+                        return@withContext Result.failure(FileNotFoundException("无法访问图片"))
                     }
                     
                     val outputFile = File(cacheDir, "processed_${System.currentTimeMillis()}.jpg")
@@ -153,7 +153,7 @@ class MainActivity : AppCompatActivity() {
                     if (success) {
                         Result.success(outputFile)
                     } else {
-                        Result.failure(IOException("Processing failed"))
+                        Result.failure(IOException("处理失败"))
                     }
                 } catch (e: IOException) {
                     Result.failure(e)
@@ -164,9 +164,9 @@ class MainActivity : AppCompatActivity() {
             
             result.onSuccess { file ->
                 binding.imagePreview.setImageBitmap(BitmapFactory.decodeFile(file.absolutePath))
-                Toast.makeText(this@MainActivity, "Image processed!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "图片处理完成!", Toast.LENGTH_SHORT).show()
             }.onFailure { error ->
-                Toast.makeText(this@MainActivity, "Error: ${error.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "错误: ${error.message}", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -181,7 +181,7 @@ class MainActivity : AppCompatActivity() {
                 try {
                     val inputPath = getPathFromUri(uri)
                     if (inputPath == null) {
-                        return@withContext Result.failure(FileNotFoundException("Cannot access image"))
+                        return@withContext Result.failure(FileNotFoundException("无法访问图片"))
                     }
                     
                     val outputFile = File(cacheDir, "${operation}_${System.currentTimeMillis()}.jpg")
@@ -216,7 +216,7 @@ class MainActivity : AppCompatActivity() {
                     if (success) {
                         Result.success(outputFile)
                     } else {
-                        Result.failure(IOException("Processing failed"))
+                        Result.failure(IOException("处理失败"))
                     }
                 } catch (e: IOException) {
                     Result.failure(e)
@@ -227,9 +227,19 @@ class MainActivity : AppCompatActivity() {
             
             result.onSuccess { file ->
                 binding.imagePreview.setImageBitmap(BitmapFactory.decodeFile(file.absolutePath))
-                Toast.makeText(this@MainActivity, "$operation applied!", Toast.LENGTH_SHORT).show()
+                val opName = when (operation) {
+                    "blur" -> "模糊"
+                    "grayscale" -> "灰度"
+                    "sepia" -> "复古"
+                    "negate" -> "反色"
+                    "flip" -> "翻转"
+                    "rotate" -> "旋转"
+                    "resize" -> "缩略"
+                    else -> operation
+                }
+                Toast.makeText(this@MainActivity, "$opName 效果已应用!", Toast.LENGTH_SHORT).show()
             }.onFailure { error ->
-                Toast.makeText(this@MainActivity, "Error: ${error.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "错误: ${error.message}", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -244,11 +254,11 @@ class MainActivity : AppCompatActivity() {
             
             sourceFile.copyTo(destFile, overwrite = true)
             
-            Toast.makeText(this, "Saved to ${destFile.absolutePath}", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "已保存到 ${destFile.absolutePath}", Toast.LENGTH_LONG).show()
             
             sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(destFile)))
         } catch (e: IOException) {
-            Toast.makeText(this, "Save failed: ${e.message}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "保存失败: ${e.message}", Toast.LENGTH_SHORT).show()
         }
     }
     

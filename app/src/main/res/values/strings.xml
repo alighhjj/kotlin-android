@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ImageMagick Processor</string>
-    <string name="title">ImageMagick Processor</string>
-    <string name="description">Select an image and apply various ImageMagick effects</string>
+    <string name="app_name">ImageMagick 图片处理</string>
+    <string name="title">ImageMagick 图片处理</string>
+    <string name="description">选择图片并应用各种 ImageMagick 效果</string>
 </resources>

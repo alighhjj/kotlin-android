@@ -16,7 +16,7 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ImageMagick Processor"
+            android:text="ImageMagick 图片处理"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -29,7 +29,7 @@
             android:layout_height="300dp"
             android:layout_marginTop="16dp"
             android:background="#EEEEEE"
-            android:contentDescription="Image preview"
+            android:contentDescription="图片预览"
             android:scaleType="centerCrop"
             android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/title"
@@ -51,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Select Image"
+            android:text="选择图片"
             app:layout_constraintTop_toBottomOf="@id/image_preview" />
 
         <Button
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:enabled="false"
-            android:text="Process (Resize)"
+            android:text="处理(缩放)"
             app:layout_constraintTop_toBottomOf="@id/select_image_button" />
 
         <TextView
@@ -68,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Effects"
+            android:text="效果"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/process_button" />
@@ -86,7 +86,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Blur"
+                android:text="模糊"
                 android:textSize="12sp" />
 
             <Button
@@ -94,7 +94,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Gray"
+                android:text="灰度"
                 android:textSize="12sp" />
 
             <Button
@@ -102,7 +102,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Sepia"
+                android:text="复古"
                 android:textSize="12sp" />
 
             <Button
@@ -110,7 +110,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Negate"
+                android:text="反色"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -127,7 +127,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Flip"
+                android:text="翻转"
                 android:textSize="12sp" />
 
             <Button
@@ -135,7 +135,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Rotate"
+                android:text="旋转"
                 android:textSize="12sp" />
 
             <Button
@@ -143,7 +143,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Thumb"
+                android:text="缩略"
                 android:textSize="12sp" />
 
             <Button
@@ -151,7 +151,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Save"
+                android:text="保存"
                 android:textSize="12sp" />
         </LinearLayout>
 
