@@ -9,10 +9,6 @@ import java.io.IOException
 
 class ImageMagick private constructor(private val context: Context) {
 
-    private val magickBinary: File by lazy {
-        File(context.applicationInfo.nativeLibraryDir, "libmagick.so")
-    }
-
     companion object {
         @Volatile
         private var instance: ImageMagick? = null
