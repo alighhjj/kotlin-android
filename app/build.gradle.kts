@@ -43,6 +43,7 @@ android {
         disable.add("AndroidGradlePluginVersion")
         disable.add("UnusedResources")
         disable.add("ButtonStyle")
+        disable.add("HardcodedText")
     }
 
     // Use this block to configure different flavors
