@@ -22,8 +22,20 @@ jobs:
           distribution: "zulu"
           java-version: "17"
 
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
       - name: Run Gradle
-        run: ./gradlew build publishToMavenLocal --continue
+        run: ./gradlew build --continue
+
+      - name: Upload Build Outputs
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: build-outputs
+          path: |
+            app/build/reports/
+            library-*/build/reports/

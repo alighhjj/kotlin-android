@@ -21,5 +21,6 @@ include(
     "app",
     "library-android",
     "library-compose",
-    "library-kotlin"
+    "library-kotlin",
+    "library-imagemagick"
 )
