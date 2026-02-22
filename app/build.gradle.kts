@@ -39,6 +39,7 @@ android {
         warningsAsErrors = true
         abortOnError = true
         disable.add("GradleDependency")
+        disable.add("SelectedPhotoAccess")
     }
 
     // Use this block to configure different flavors
