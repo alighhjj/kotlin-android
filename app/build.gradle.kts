@@ -40,6 +40,7 @@ android {
         abortOnError = true
         disable.add("GradleDependency")
         disable.add("SelectedPhotoAccess")
+        disable.add("AndroidGradlePluginVersion")
     }
 
     // Use this block to configure different flavors

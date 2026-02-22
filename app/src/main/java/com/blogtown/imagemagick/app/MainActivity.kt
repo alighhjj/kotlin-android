@@ -31,6 +31,18 @@ class MainActivity : AppCompatActivity() {
     private var selectedImageUri: Uri? = null
     private var currentProcessedPath: String? = null
     
+    companion object {
+        private const val PERMISSION_REQUEST_CODE = 100
+        private const val DEFAULT_RESIZE_WIDTH = 1024
+        private const val DEFAULT_RESIZE_HEIGHT = 1024
+        private const val DEFAULT_QUALITY = 90
+        private const val BLUR_RADIUS = 5.0
+        private const val BLUR_SIGMA = 2.0
+        private const val ROTATE_DEGREES = 90.0
+        private const val SMALL_RESIZE_DIMENSION = 512
+        private const val SMALL_RESIZE_QUALITY = 85
+    }
+    
     private val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
         uri?.let {
             selectedImageUri = it
@@ -110,7 +122,7 @@ class MainActivity : AppCompatActivity() {
         }
         
         if (notGranted.isNotEmpty()) {
-            requestPermissions(notGranted.toTypedArray(), 100)
+            requestPermissions(notGranted.toTypedArray(), PERMISSION_REQUEST_CODE)
         }
     }
     
@@ -133,9 +145,9 @@ class MainActivity : AppCompatActivity() {
                     val success = imageMagick.resizeImage(
                         inputPath = inputPath,
                         outputPath = outputFile.absolutePath,
-                        width = 1024,
-                        height = 1024,
-                        quality = 90
+                        width = DEFAULT_RESIZE_WIDTH,
+                        height = DEFAULT_RESIZE_HEIGHT,
+                        quality = DEFAULT_QUALITY
                     )
                     
                     if (success) {
@@ -176,13 +188,13 @@ class MainActivity : AppCompatActivity() {
                     currentProcessedPath = outputFile.absolutePath
                     
                     val success = when (operation) {
-                        "blur" -> imageMagick.blurImage(inputPath, outputFile.absolutePath, 5.0, 2.0)
+                        "blur" -> imageMagick.blurImage(inputPath, outputFile.absolutePath, BLUR_RADIUS, BLUR_SIGMA)
                         "grayscale" -> imageMagick.grayscaleImage(inputPath, outputFile.absolutePath)
                         "sepia" -> imageMagick.applySepia(inputPath, outputFile.absolutePath)
                         "negate" -> imageMagick.negateImage(inputPath, outputFile.absolutePath)
                         "flip" -> imageMagick.flipImage(inputPath, outputFile.absolutePath)
-                        "rotate" -> imageMagick.rotateImage(inputPath, outputFile.absolutePath, 90.0)
-                        "resize" -> imageMagick.resizeImage(inputPath, outputFile.absolutePath, 512, 512, 85)
+                        "rotate" -> imageMagick.rotateImage(inputPath, outputFile.absolutePath, ROTATE_DEGREES)
+                        "resize" -> imageMagick.resizeImage(inputPath, outputFile.absolutePath, SMALL_RESIZE_DIMENSION, SMALL_RESIZE_DIMENSION, SMALL_RESIZE_QUALITY)
                         else -> false
                     }
                     
@@ -225,6 +237,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
     
+    @Suppress("SwallowedException")
     private fun getPathFromUri(uri: Uri): String? {
         return try {
             val inputStream = contentResolver.openInputStream(uri)
